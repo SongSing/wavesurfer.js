@@ -293,6 +293,11 @@ export default class MultiCanvas extends Drawer {
                     const peak =
                         peaks[Math.floor(i * scale * peakIndexScale)] || 0;
                     const h = Math.round((peak / absmax) * halfH);
+
+                    if (this.params.progressColorFn) {
+                        this.params.progressColor = this.params.progressColorFn(i / last);
+                    }
+
                     this.fillRect(
                         i + this.halfPixel,
                         halfH - h + offsetY,
